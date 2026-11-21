@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="description" content="An interactive research dashboard tracking publications about artificial intelligence, labor markets, and human capital.">
+<title>Publications on Artificial Intelligence, Labor, and Human Capital</title>
+<style>
+:root{--navy:#111b32;--navy2:#0b1224;--ink:#1b2640;--muted:#718096;--border:#e7ebf2;--surface:#fff;--bg:#f5f7fb;--green:#06a991;--teal:#00cdb3;--sky:#528bef;--amber:#e7a347;--purple:#8967eb;--red:#ed7a72;--radius:18px;--shadow:0 8px 32px rgba(20,36,68,.055)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:Inter,"Segoe UI",-apple-system,BlinkMacSystemFont,Arial,sans-serif;background:var(--bg);font-size:14px}button,input,select{font:inherit}button{cursor:pointer}a{color:inherit}a:hover{text-decoration:none}button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,[role=button]:focus-visible{outline:3px solid rgba(0,184,160,.5);outline-offset:3px}
+.app-shell{display:grid;grid-template-columns:262px minmax(0,1fr);min-height:100vh}.sidebar{background:var(--navy2);color:#e5edf9;padding:31px 19px 24px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;isolation:isolate}.sidebar:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 110% -4%,rgba(5,208,180,.14),transparent 37%),linear-gradient(145deg,#111e35,#0a1122)}.brand{display:flex;align-items:center;gap:12px;padding:3px 9px 29px}.brand-mark{height:41px;width:41px;border-radius:13px;background:linear-gradient(140deg,#13dec3,#368ddd);display:grid;place-items:center;font-weight:850;color:#0d2436;font-size:21px;box-shadow:0 8px 25px rgba(11,207,190,.2)}.brand-name{font-weight:800;font-size:16px;letter-spacing:-.4px}.brand-caption{font-size:10px;letter-spacing:1.2px;color:#8c9bb6;margin-top:4px;font-weight:700}.sidebar-label{font-size:10px;font-weight:800;color:#637595;letter-spacing:1.6px;margin:18px 15px 11px}.sidebar nav{display:grid;gap:6px}.nav-link{display:flex;align-items:center;gap:12px;padding:12px 13px;border-radius:11px;color:#9caecc;text-decoration:none;font-weight:650;font-size:13px;transition:.15s}.nav-link:hover{color:white;background:#182844}.nav-link.active{color:#c8fff5;background:#1a3547;border:1px solid rgba(0,205,179,.18)}.nav-icon{width:19px;text-align:center;font-size:17px;opacity:.85}.nav-count{margin-left:auto;font-size:10px;background:#273955;border-radius:30px;padding:3px 7px;color:#c2d1e7}.sidebar-bottom{margin-top:auto;padding:18px 11px 4px}.sidebar-progress{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.075);border-radius:15px;padding:17px}.sidebar-progress h4{font-size:12px;margin:0 0 9px;color:#e9f3ff}.sidebar-progress .big{font-size:29px;font-weight:850;letter-spacing:-1px}.sidebar-progress small{font-size:11px;color:#8ca0c2}.tiny-track{height:7px;background:#27364f;border-radius:40px;overflow:hidden;margin:12px 0}.tiny-track span{display:block;background:linear-gradient(90deg,#05c0aa,#5ae0d2);height:100%;width:0%;border-radius:40px;transition:width .3s}.sidebar-foot{font-size:10px;line-height:1.8;color:#7789a7;margin:19px 5px 0}
+.main-area{min-width:0;max-width:1630px;width:100%;margin:0 auto;padding:0 44px 52px}.topbar{height:86px;display:flex;align-items:center;justify-content:space-between;gap:15px}.breadcrumb{font-size:12px;color:#8a97ae;display:flex;align-items:center;gap:8px}.breadcrumb strong{color:#253450;font-weight:750}.top-right{display:flex;gap:10px;align-items:center}.save-label{color:#65877e;font-size:11px;display:flex;align-items:center;gap:7px;padding-right:9px}.save-dot{height:7px;width:7px;border-radius:50%;background:#03ae8b;display:inline-block}.btn{border:1px solid var(--border);border-radius:10px;background:white;color:#283754;display:inline-flex;gap:8px;align-items:center;justify-content:center;padding:10px 14px;font-size:12px;font-weight:750;transition:.16s;white-space:nowrap}.btn:hover{transform:translateY(-1px);border-color:#bbd3de;box-shadow:0 3px 12px #17284e10}.btn-dark{background:#15243d;color:white;border-color:#15243d}.btn-dark:hover{background:#243b5d}.btn-ghost{background:#f2f5fa}.btn .ico{font-size:15px}.hero{position:relative;overflow:hidden;background:linear-gradient(117deg,#152842 0%,#142f46 54%,#10545c 100%);border-radius:23px;min-height:225px;padding:33px 37px;color:white;display:flex;align-items:center;isolation:isolate;box-shadow:0 16px 35px rgba(17,55,76,.12)}.hero:before{content:"";position:absolute;right:-110px;top:-105px;width:450px;height:450px;border:1px solid rgba(255,255,255,.13);border-radius:50%;box-shadow:0 0 0 43px rgba(255,255,255,.035),0 0 0 85px rgba(255,255,255,.025),0 0 0 129px rgba(255,255,255,.018)}.hero:after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(154,244,239,.28) 1px,transparent 1px);background-size:23px 23px;mask-image:linear-gradient(90deg,transparent 58%,black 100%);z-index:-1}.hero-copy{position:relative;z-index:1;max-width:760px}.eyebrow{font-size:10px;letter-spacing:2px;color:#79dfd5;font-weight:800;text-transform:uppercase}.hero h1{font-weight:850;letter-spacing:-1.7px;line-height:1.14;font-size:clamp(26px,3vw,40px);margin:14px 0 17px}.hero-author{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12px;color:#c6deea;line-height:1.65}.hero-author strong{color:#fff;font-weight:750}.hero-author .separator{color:#6094a2}.hero-stamp{position:absolute;right:35px;bottom:31px;color:#c1f6f0;border:1px solid #84b6b552;border-radius:11px;padding:11px 13px;background:#ffffff0a;font-size:11px;font-weight:750;text-align:center;line-height:1.6;letter-spacing:.9px}
+.section{margin-top:30px;scroll-margin-top:24px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.section-kicker{font-weight:800;color:var(--green);font-size:10px;text-transform:uppercase;letter-spacing:1.7px;margin-bottom:8px}.section-head h2{margin:0;font-size:21px;font-weight:830;letter-spacing:-.7px}.section-description{color:var(--muted);font-size:12px;line-height:1.6}.metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}.metric{background:white;border:1px solid var(--border);border-radius:15px;padding:18px 19px;box-shadow:var(--shadow);min-height:124px;position:relative;overflow:hidden}.metric-top{display:flex;align-items:center;justify-content:space-between;color:#78869a;font-weight:700;font-size:11px}.metric-ico{height:30px;width:30px;border-radius:9px;background:#eaf6f4;color:#0aa991;display:grid;place-items:center;font-size:14px}.metric-ico.purple{background:#f1edff;color:#8766da}.metric-ico.blue{background:#e9f1ff;color:#5586e4}.metric-ico.amber{background:#fff4e7;color:#d9963f}.metric-ico.coral{background:#ffefec;color:#e77d75}.metric-number{font-size:31px;font-weight:850;letter-spacing:-1.2px;margin:8px 0 2px}.metric-sub{font-size:10px;color:#94a0b0}.analytics-grid{display:grid;grid-template-columns:minmax(320px,.91fr) minmax(0,1.3fr);gap:16px;margin-top:18px}.panel{background:#fff;border-radius:19px;border:1px solid var(--border);box-shadow:var(--shadow);padding:23px 24px;min-width:0}.panel h3{font-size:15px;font-weight:800;letter-spacing:-.3px;margin:0}.panel-sub{font-size:11px;color:#8a96a7;line-height:1.55;margin:7px 0 0}.progress-body{display:flex;align-items:center;gap:26px;margin-top:26px;margin-bottom:5px}.donut{width:170px;height:170px;border-radius:50%;background:conic-gradient(var(--green) 0deg 0deg,var(--amber) 0deg 0deg,#e6ebf2 0deg 360deg);display:grid;place-items:center;flex-shrink:0;transition:background .15s}.donut-hole{width:128px;height:128px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;flex-direction:column}.donut-hole strong{font-size:29px;letter-spacing:-1px}.donut-hole span{font-size:11px;color:#90a0b1}.status-legend{flex:1;display:grid;gap:15px}.legend-row{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:11px;color:#687991}.legend-row strong{color:#2b3650;font-size:13px}.legend-name{display:flex;align-items:center;gap:9px}.legend-dot{width:9px;height:9px;border-radius:3px;background:var(--green)}.legend-dot.amber{background:var(--amber)}.legend-dot.gray{background:#e1e7ef}.year-chart{height:205px;display:grid;grid-template-columns:repeat(3,1fr);gap:30px;padding:22px 12px 2px;align-items:end;border-bottom:1px solid #e8edf3;margin-top:8px}.year-group{height:100%;min-width:0;display:flex;align-items:stretch;flex-direction:column;justify-content:end;cursor:pointer;border-radius:10px;position:relative}.year-group:focus-visible{outline:3px solid var(--teal)}.year-count{font-size:12px;font-weight:850;color:#47617f;text-align:center;padding-bottom:10px}.year-column{flex:0 0 auto;background:linear-gradient(180deg,#31bfc5,#2b86d5);border-radius:8px 8px 2px 2px;min-height:30px;position:relative;transition:.18s;align-self:stretch}.year-group:not(.selected):hover .year-column{filter:saturate(1.3);transform:scaleY(1.035);transform-origin:bottom}.year-group.selected .year-column{background:linear-gradient(180deg,#00cbb2,#02a792);box-shadow:0 0 0 3px #c3f9ed}.year-label{font-size:12px;color:#8291a4;text-align:center;font-weight:750;padding-top:12px;position:absolute;top:100%;width:100%;left:0}.chart-note{display:flex;align-items:center;justify-content:space-between;color:#9aa7b6;font-size:10px;margin-top:30px;gap:8px}.soft-link{border:0;background:transparent;color:#0d9e90;font-size:11px;font-weight:750;padding:4px;cursor:pointer}
+.insights{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:17px}.insight{background:white;border:1px solid var(--border);border-radius:15px;padding:19px 20px}.insight .tag{color:#008f83;font-size:10px;font-weight:850;letter-spacing:1px;text-transform:uppercase}.insight h4{font-size:13px;margin:11px 0 7px;line-height:1.4}.insight p{font-size:11px;color:#728096;line-height:1.65;margin:0}.insight.purple .tag{color:#8463cc}.insight.coral .tag{color:#e37a69}
+.library-controls{display:grid;grid-template-columns:minmax(220px,1.55fr) repeat(3,minmax(135px,1fr));gap:10px;background:white;padding:14px;border:1px solid var(--border);border-radius:15px;margin:15px 0 14px}.field{height:43px;border:1px solid #e6ebf2;border-radius:10px;background:#f9fafc;color:#283b55;width:100%;outline:none;padding:0 13px;font-size:12px;min-width:0}.field:focus{border-color:#12bfb0;background:white;box-shadow:0 0 0 3px #19ccb41a}.search-wrap{position:relative}.search-wrap:before{content:'⌕';position:absolute;left:13px;top:7px;color:#778aa7;font-size:24px}.search-wrap input{padding-left:40px}.results-line{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;min-height:25px}.results-line small{color:#8795a7}.active-filters{display:flex;gap:7px;flex-wrap:wrap}.filter-chip{background:#dff6ef;border:1px solid #c6e9e0;color:#087d71;font-size:10px;padding:5px 9px;border-radius:40px;cursor:pointer}.paper-list{display:grid;gap:12px}.paper-card{background:#fff;border:1px solid #e4eaf1;border-radius:16px;display:grid;grid-template-columns:56px minmax(0,1fr) 180px;gap:15px;padding:20px 19px;transition:.16s;box-shadow:0 5px 20px #17284e08;cursor:pointer}.paper-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px #162d5118;border-color:#bedfdc}.paper-index{height:44px;width:44px;background:linear-gradient(135deg,#e7f5fa,#ebf4fd);color:#27768a;border-radius:12px;display:grid;place-items:center;font-size:17px;font-weight:850}.paper-card:nth-child(3n+2) .paper-index{background:#f0eafd;color:#8166bd}.paper-card:nth-child(3n+3) .paper-index{background:#eaf7f1;color:#158a73}.paper-overline{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:9px}.pill{font-size:10px;border-radius:30px;padding:4px 9px;font-weight:750;white-space:nowrap}.pill.blue{background:#eaf2ff;color:#4575c5}.pill.gray{background:#f2f4f8;color:#73819b}.pill.green{background:#e4f8f0;color:#168b68}.pill.amber{background:#fff3e7;color:#bc8237}.pill.red{background:#ffebe9;color:#b76462}.paper-title{font-size:15px;line-height:1.45;font-weight:800;letter-spacing:-.18px;margin:0 0 7px}.paper-card:hover .paper-title{color:#007c79}.paper-author{font-size:11px;color:#7c89a0;line-height:1.5}.paper-desc{font-size:11px;line-height:1.68;color:#758399;margin:11px 0 0;max-width:850px}.paper-side{border-left:1px solid #edf0f5;padding-left:17px;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;gap:8px}.signal-value{font-size:18px;font-weight:850;letter-spacing:-.6px;text-align:right}.signal-value.positive{color:#009b84}.signal-value.negative{color:#c96b61}.signal-value.mixed{color:#7166ae}.signal-label{color:#91a0b0;font-size:10px;line-height:1.5;text-align:right;margin-top:4px}.quick-status{font-size:10px;font-weight:800;border:1px solid #e4e9ee;border-radius:8px;background:#f7f9fb;color:#66778a;padding:7px 9px;max-width:157px}.quick-status.read{background:#e3f7ed;color:#118765;border-color:#caeddb}.quick-status.reading{background:#fff3e3;color:#af7838;border-color:#fae7c9}.paper-bottom-link{font-size:10px;color:#008f85;font-weight:800;margin-top:6px}.empty{padding:50px 22px;text-align:center;background:white;border:1px dashed #cdd9e2;border-radius:16px;color:#8492a5}.empty strong{display:block;color:#27354e;font-size:16px;margin:13px auto}
+.authors-panel{background:white;border:1px solid var(--border);border-radius:18px;padding:21px}.author-controls{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:19px}.authors-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.author-card{min-width:0;padding:13px 12px;border-radius:12px;background:#f9fafc;border:1px solid #eff2f7;display:flex;align-items:center;gap:11px;cursor:pointer;text-align:left;transition:.15s}.author-card:hover{border-color:#9ddcd4;background:#ecf9f6}.avatar{width:36px;height:36px;border-radius:11px;background:#e8eef9;color:#4e76a9;display:grid;place-items:center;flex-shrink:0;font-size:11px;font-weight:850}.author-card:nth-child(4n+2) .avatar{background:#e7f5ee;color:#168d7b}.author-card:nth-child(4n+3) .avatar{background:#f2eafb;color:#8d67bc}.author-card:nth-child(4n+4) .avatar{background:#fff0e8;color:#cf7b45}.author-main{min-width:0}.author-name{font-size:11px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}.author-count{font-size:10px;color:#91a0b2;margin-top:4px}.footer{color:#9ba8b7;font-size:11px;text-align:center;margin-top:40px;line-height:1.7}.footer strong{color:#4d6b79}
+.modal-shade{position:fixed;inset:0;background:rgba(11,21,40,.64);backdrop-filter:blur(4px);z-index:100;display:flex;justify-content:flex-end;opacity:0;visibility:hidden;transition:.2s}.modal-shade.open{opacity:1;visibility:visible}.detail-panel{background:#f6f8fc;max-width:880px;width:min(880px,100%);height:100%;transform:translateX(25px);transition:transform .25s ease;overflow:auto;box-shadow:-20px 0 75px #020b1a3b}.modal-shade.open .detail-panel{transform:translateX(0)}.detail-bar{position:sticky;top:0;background:#fff;z-index:3;padding:13px 26px;border-bottom:1px solid #e9edf3;display:flex;align-items:center;justify-content:space-between;gap:12px}.detail-bar-label{font-size:11px;color:#718197;font-weight:750}.detail-main{padding:27px 31px 50px}.detail-heading{background:linear-gradient(118deg,#162e4a,#15515a);border-radius:18px;color:white;padding:26px 29px;margin-bottom:17px}.detail-heading h2{font-size:25px;line-height:1.3;letter-spacing:-.75px;margin:12px 0}.detail-overline{display:flex;gap:10px;align-items:center;color:#b8eae5;font-size:11px;font-weight:700;flex-wrap:wrap}.detail-affil{color:#bdd4e0;font-size:12px;margin:0;line-height:1.6}.detail-status{background:white;border:1px solid #e7ebf3;border-radius:13px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:15px 19px;margin-bottom:16px;flex-wrap:wrap}.detail-status strong{font-size:12px}.detail-status small{display:block;color:#8796aa;margin-top:4px;font-size:10px}.status-buttons{display:flex;gap:5px;background:#f2f5f8;padding:5px;border-radius:10px;flex-wrap:wrap}.status-button{font-size:11px;font-weight:750;color:#8190a2;border-radius:8px;padding:10px 11px;border:0;background:transparent;white-space:nowrap}.status-button.active{background:white;color:#087f75;box-shadow:0 1px 7px #15244b15}.status-button[data-status=read].active{color:#007e62}.status-button[data-status=reading].active{color:#b77d2d}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.detail-box{background:white;border:1px solid #e7ecf3;border-radius:14px;padding:19px 21px;min-width:0}.detail-box.wide{grid-column:1/-1}.detail-label{display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.75px;font-weight:850;color:#0b948a;text-transform:uppercase;margin:0 0 14px}.detail-label .square{width:24px;height:24px;display:grid;place-items:center;border-radius:7px;background:#e6f8f4;color:#009985;font-size:12px}.detail-box p{font-size:12px;line-height:1.85;color:#4b5871;margin:0}.detail-box ul{margin:0;padding-left:18px;display:grid;gap:9px}.detail-box li{font-size:12px;line-height:1.5;color:#4d5b73}.kw-list{display:flex;gap:7px;flex-wrap:wrap}.keyword{font-size:11px;background:#f1f5fa;border:1px solid #e6ecf4;padding:7px 10px;border-radius:8px;color:#526982}.detail-footnote{font-size:10px;color:#a2adbb;margin-top:12px;line-height:1.6}.author-links{display:flex;flex-wrap:wrap;gap:8px}.author-link{font-size:11px;padding:8px 10px;border-radius:9px;border:1px solid #e9eef3;background:#f8fafd;color:#4f6279;text-decoration:none;font-weight:750;display:inline-flex;align-items:center;gap:5px}.author-link.has-link{color:#007e85;background:#effaf8;border-color:#d9f2ec}.author-link.has-link:hover{background:#dff7f0}.external{font-size:10px;opacity:.75}.detail-actions{display:flex;justify-content:flex-end;margin-top:19px;gap:10px}.section-intro{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px;gap:10px;flex-wrap:wrap}.hint{font-size:10px;color:#9aa8b7;line-height:1.6}.toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,18px);background:#132840;color:white;padding:12px 20px;border-radius:12px;font-size:12px;z-index:200;box-shadow:0 14px 40px #15203333;opacity:0;pointer-events:none;transition:.22s}.toast.show{opacity:1;transform:translate(-50%,0)}.mobile-head{display:none}
+@media(max-width:1200px){.main-area{padding:0 27px 40px}.sidebar{padding-left:12px;padding-right:12px}.app-shell{grid-template-columns:225px minmax(0,1fr)}.metrics{grid-template-columns:repeat(3,1fr)}.authors-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.paper-card{grid-template-columns:52px minmax(0,1fr) 145px}.library-controls{grid-template-columns:1fr 1fr}}
+@media(max-width:820px){.app-shell{display:block}.sidebar{height:auto;position:relative;padding:13px 20px;flex-direction:row;align-items:center;gap:20px;overflow:hidden}.brand{padding:0;white-space:nowrap}.sidebar-label,.sidebar-bottom,.sidebar-foot{display:none}.sidebar nav{display:flex;gap:4px;overflow:auto}.nav-link{white-space:nowrap;padding:10px}.nav-link .nav-icon{display:none}.nav-count{display:none}.main-area{padding:0 18px 35px}.topbar{height:67px}.hero{padding:28px;min-height:200px}.hero-stamp{display:none}.metrics{grid-template-columns:repeat(3,1fr)}.analytics-grid{grid-template-columns:1fr}.authors-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.progress-body{justify-content:center}.paper-card{grid-template-columns:48px minmax(0,1fr)}.paper-side{grid-column:2;border-left:0;border-top:1px solid #edf0f5;padding:12px 0 0;flex-direction:row;align-items:center;text-align:left}.signal-value,.signal-label{text-align:left}.detail-grid{grid-template-columns:1fr}.detail-box.wide{grid-column:auto}}
+@media(max-width:520px){.brand-name{font-size:13px}.brand-mark{width:34px;height:34px}.brand-caption{display:none}.sidebar{padding:10px 12px;gap:7px;flex-wrap:wrap}.sidebar nav{width:100%}.nav-link{font-size:11px;padding:7px 10px}.topbar{height:62px}.save-label{display:none}.breadcrumb{font-size:11px}.top-right .btn{padding:9px 10px}.top-right .btn span.labeltext{display:none}.hero{border-radius:17px;padding:24px}.hero h1{font-size:27px}.hero-author{font-size:11px}.metrics{grid-template-columns:repeat(2,1fr);gap:9px}.metric{min-height:107px;padding:13px}.metric-number{font-size:25px}.metric-top{font-size:10px}.metrics .metric:last-child{grid-column:span 2}.panel{padding:18px}.progress-body{gap:13px}.donut{height:128px;width:128px}.donut-hole{width:97px;height:97px}.donut-hole strong{font-size:23px}.insights{grid-template-columns:1fr}.library-controls{grid-template-columns:1fr}.paper-card{padding:16px 13px;gap:10px}.paper-title{font-size:13px}.paper-desc{font-size:11px}.authors-grid{grid-template-columns:1fr}.detail-main{padding:19px 15px}.detail-heading{padding:22px 19px}.detail-heading h2{font-size:21px}.detail-bar{padding:12px 15px}.detail-status{align-items:flex-start;gap:13px}.status-buttons{width:100%;justify-content:space-between}.status-button{font-size:10px;padding:8px}.detail-box{padding:18px}.year-chart{gap:17px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+ <div class="brand"><div class="brand-mark">A<span style="color:white">I</span></div><div><div class="brand-name">Research Atlas</div><div class="brand-caption">LITERATURE INTELLIGENCE</div></div></div>
+ <div class="sidebar-label">WORKSPACE</div>
+ <nav aria-label="Main navigation">
+  <a class="nav-link active" href="#overview" data-nav="overview"><span class="nav-icon">◫</span> Overview</a>
+  <a class="nav-link" href="#library" data-nav="library"><span class="nav-icon">▤</span> Paper library <span class="nav-count" id="sidebarTotal">5</span></a>
+  <a class="nav-link" href="#authors" data-nav="authors"><span class="nav-icon">♧</span> Author index <span class="nav-count" id="sidebarAuthors">22</span></a>
+  <a class="nav-link" href="#library" data-nav="reading" id="navReading"><span class="nav-icon">◉</span> Reading queue</a>
+ </nav>
+ <div class="sidebar-bottom"><div class="sidebar-progress"><h4>Reading journey</h4><div><span class="big" id="sidebarPercent">0%</span> <small>complete</small></div><div class="tiny-track"><span id="sidebarTrack"></span></div><small id="sidebarReadCount">0 of 5 papers read</small></div><div class="sidebar-foot">CURATED RESEARCH COLLECTION<br>Updated November 2026<br>Local-first, browser-persistent</div></div>
+</aside>
+<div class="main-area">
+<header class="topbar"><div class="breadcrumb">RESEARCH SPACE <span>›</span> <strong>AI &amp; Labor Markets</strong></div><div class="top-right"><span class="save-label" id="storageStatus"><i class="save-dot"></i> Saved locally</span><button class="btn" id="importButton" title="Import a previously saved JSON reading-progress backup"><span class="ico">⇧</span> <span class="labeltext">Import progress</span></button><input type="file" id="progressInput" accept="application/json,.json" hidden><button class="btn" id="exportButton" title="Export your reading statuses as a JSON backup"><span class="ico">⇩</span> <span class="labeltext">Export progress</span></button><button class="btn btn-dark" id="openLibrary"><span class="ico">⌕</span> <span class="labeltext">Explore papers</span></button></div></header>
+<main>
+<section id="overview" aria-label="Overview">
+<div class="hero"><div class="hero-copy"><div class="eyebrow">RESEARCH LIBRARY / INTERACTIVE DASHBOARD</div><h1>Publications on Artificial Intelligence, Labor, and Human Capital</h1><div class="hero-author"><strong>Amirmohammad Ahmadi</strong><span class="separator">·</span><span>PhD Student in Science and Technology Policy</span><span class="separator">·</span><span>Sharif University of Technology</span></div></div><div class="hero-stamp">RESEARCH COLLECTION<br>2022 — 2026</div></div>
+<div class="section"><div class="section-head"><div><div class="section-kicker">Your research at a glance</div><h2>Library overview</h2></div><div class="section-description">Live metrics based on reading status</div></div>
+<div class="metrics">
+ <div class="metric"><div class="metric-top">Total papers <span class="metric-ico">▤</span></div><div class="metric-number" id="statTotal">5</div><div class="metric-sub">Curated publications</div></div>
+ <div class="metric"><div class="metric-top">Completed <span class="metric-ico blue">✓</span></div><div class="metric-number" id="statRead">0</div><div class="metric-sub">Marked as read</div></div>
+ <div class="metric"><div class="metric-top">In progress <span class="metric-ico amber">◔</span></div><div class="metric-number" id="statReading">0</div><div class="metric-sub">Currently reading</div></div>
+ <div class="metric"><div class="metric-top">Not started <span class="metric-ico coral">○</span></div><div class="metric-number" id="statUnread">5</div><div class="metric-sub">Waiting in queue</div></div>
+ <div class="metric"><div class="metric-top">Researchers <span class="metric-ico purple">♧</span></div><div class="metric-number" id="statAuthors">22</div><div class="metric-sub">Distinct paper authors</div></div>
+</div></div>
+<div class="analytics-grid">
+ <div class="panel"><div class="section-intro"><div><h3>Reading progress</h3><p class="panel-sub">Your journey through the collection</p></div><span class="pill green" id="completePill">0% completed</span></div><div class="progress-body"><div class="donut" id="donut"><div class="donut-hole"><strong id="donutPercent">0%</strong><span>read</span></div></div><div class="status-legend"><div class="legend-row"><span class="legend-name"><i class="legend-dot"></i> Read</span><strong id="legendRead">0</strong></div><div class="legend-row"><span class="legend-name"><i class="legend-dot amber"></i> In progress</span><strong id="legendReading">0</strong></div><div class="legend-row"><span class="legend-name"><i class="legend-dot gray"></i> Not read</span><strong id="legendUnread">5</strong></div></div></div></div>
+ <div class="panel"><div class="section-intro"><div><h3>Publication timeline</h3><p class="panel-sub">Select a publication year to filter the library</p></div><span class="pill blue" id="yearRange">2022–2026</span></div><div id="yearChart" class="year-chart" role="group" aria-label="Interactive publication counts by year"></div><div class="chart-note"><span>COUNT OF PAPERS · PUBLICATION YEAR</span><button class="soft-link" id="clearYear">Show all years ↗</button></div></div>
+</div>
+<div class="insights" aria-label="Research takeaways"><div class="insight"><div class="tag">EMPLOYMENT • U.S.</div><h4>AI adoption can coincide with expansion</h4><p>The Ramp–Revelio study finds growing headcount among firms with intensive paid AI adoption, with important selection caveats.</p></div><div class="insight coral"><div class="tag">EMPLOYMENT • DENMARK</div><h4>Recruitment can slow after adoption</h4><p>Monthly Danish administrative data show below-trend employment among AI adopters, concentrated in smaller firms.</p></div><div class="insight purple"><div class="tag">SKILLS &amp; MOBILITY</div><h4>Task-level effects are heterogeneous</h4><p>Other papers emphasize changed skill demand, occupational mobility, and different outcomes across worker groups.</p></div></div>
+</section>
+<section class="section" id="library" aria-label="Paper library"><div class="section-head"><div><div class="section-kicker">Explore the evidence</div><h2>Publication library</h2></div><span class="section-description">Select any paper for its full research brief</span></div>
+<div class="library-controls"><div class="search-wrap"><input id="searchInput" class="field" type="search" placeholder="Search titles, authors, keywords, findings…" aria-label="Search papers"></div><select id="yearSelect" class="field" aria-label="Filter by publication year"><option value="all">All publication years</option></select><select id="statusSelect" class="field" aria-label="Filter by reading status"><option value="all">All reading statuses</option><option value="unread">Not read</option><option value="reading">In progress</option><option value="read">Read</option></select><select id="sortSelect" class="field" aria-label="Sort publications"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="az">Title A–Z</option><option value="za">Title Z–A</option></select></div>
+<div class="results-line"><small id="resultCount">Showing 5 of 5 papers</small><div class="active-filters" id="activeFilters"></div></div><div class="paper-list" id="paperList"></div></section>
+<section class="section" id="authors" aria-label="Author index"><div class="section-head"><div><div class="section-kicker">Researcher network</div><h2>Browse by author</h2></div><div class="section-description">Select an author to see matching publications</div></div><div class="authors-panel"><div class="author-controls"><div><strong style="font-size:12px;color:#354966" id="authorCountHeading">22 researchers</strong><div class="hint">Profiles are linked only when a matching Google Scholar or LinkedIn account was verified.</div></div><input class="field" style="max-width:250px" id="authorSearch" type="search" placeholder="Find a researcher…" aria-label="Search author index"></div><div class="authors-grid" id="authorGrid"></div></div></section>
+<div class="footer">Designed as a living literature atlas for <strong>Amirmohammad Ahmadi</strong> · Research briefs are based on the five supplied papers.<br>Reading statuses are stored in this browser. Paper results use different samples and identification strategies and should not be treated as directly comparable estimates.</div>
+</main>
+</div>
+</div>
+<div class="modal-shade" id="detailBackdrop" aria-hidden="true"><aside class="detail-panel" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><div class="detail-bar"><div class="detail-bar-label">RESEARCH BRIEF <span id="detailCounter"></span></div><button class="btn" id="closeDetail" aria-label="Close article details">✕ &nbsp; Close</button></div><div class="detail-main" id="detailBody"></div></aside></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script id="paper-data" type="application/json">[
+  {
+    "id": "ramp-2026",
+    "title": "A New Look at AI’s Impact on Jobs: Firm-Level AI Spending and Workforce Adjustment",
+    "year": 2026,
+    "date": "June 30, 2026",
+    "type": "Working paper",
+    "venue": "Ramp Economics Lab / Ramp & Revelio Labs",
+    "country": "United States",
+    "lens": "Firm-level adoption",
+    "effect": "positive",
+    "signal": "+10.2%",
+    "signalLabel": "Headcount among high-intensity adopters over 24 months",
+    "authors": [
+      {
+        "name": "Ara Kharazian",
+        "url": ""
+      },
+      {
+        "name": "Lisa Simon",
+        "url": ""
+      },
+      {
+        "name": "Ryan Stevens",
+        "url": "https://www.linkedin.com/in/ryanstevens3"
+      }
+    ],
+    "keywords": [
+      "Generative AI",
+      "AI adoption",
+      "AI spending",
+      "Firm employment",
+      "Entry-level hiring",
+      "Technology adoption intensity"
+    ],
+    "keywordOrigin": "Curated from the paper; no formal keyword list was provided.",
+    "abstract": "We study how employment changes when firms adopt generative AI using observed AI spending from Ramp card and bill pay data linked to Revelio Labs workforce records for 21,559 firms in the United States. We find that companies that adopt AI tend to grow faster following adoption, but the relationship is driven almost entirely by high-intensity adopters. Firms making the largest AI investments grow employment by roughly 10% following adoption, while low-intensity adopters see no statistically significant change. Entry-level headcount rises 12% for high-intensity adopters. Gains emerge gradually and are broad across roles, including engineering, sales, administration, and customer service. They are also uneven: adopters are already larger, more technical, faster-growing firms, and sector-level gains are concentrated in Information. The results counter predictions that AI adoption will lead to broad job loss.",
+    "theories": [
+      "Task-based framework of automation and labor demand",
+      "Labor substitution versus human–AI complementarity",
+      "Productivity and scale effects on labor demand",
+      "Heterogeneous firm-level technology adoption"
+    ],
+    "method": "Quantitative • Observational longitudinal firm panel. Staggered-adoption difference-in-differences using the Callaway–Sant’Anna group-time estimator, event-study diagnostics, and comparisons to not-yet-adopting firms within adoption-intensity strata. Results require caution about endogenous adoption.",
+    "data": "21,559 matched U.S. firms. Ramp company-card and bill-payment transactions identify sustained spending on AI vendors; Revelio Labs online professional-profile-derived employee histories measure monthly headcount and workforce composition. Linked monthly panel: January 2021–February 2026.",
+    "results": "Firms with high AI spending per employee have approximately 10.2% higher headcount over the first 24 months after sustained adoption, relative to the preferred not-yet-adopter comparison; entry-level employment rises 12%. Low-intensity adoption has no statistically detectable employment difference. Gains appear gradually, span multiple occupations, and are particularly evident in the Information sector. Adopters already differ from other firms before adoption, so selection remains an important interpretive caveat.",
+    "sourceUrl": "https://ramp.com/data/ai-jobs-impact",
+    "sourceLabel": "View working paper",
+    "topics": [
+      "Firm employment",
+      "Hiring",
+      "Adoption"
+    ],
+    "sortDate": "2026-06-30"
+  },
+  {
+    "id": "bonin-2026",
+    "title": "AI Adoption and Firm Size: Employment Effects in Monthly Administrative Data",
+    "year": 2026,
+    "date": "September 16, 2026",
+    "type": "Working paper",
+    "venue": "Danmarks Nationalbank · Working Paper No. 223",
+    "country": "Denmark",
+    "lens": "Firm-level adoption",
+    "effect": "negative",
+    "signal": "−11%",
+    "signalLabel": "Employment relative to pre-adoption trend by late 2025",
+    "authors": [
+      {
+        "name": "Simone Maria Bonin",
+        "url": "https://dk.linkedin.com/in/simone-maria-bonin"
+      },
+      {
+        "name": "Saman Darougheh",
+        "url": ""
+      },
+      {
+        "name": "Andreas Kuchler",
+        "url": "https://dk.linkedin.com/in/andreas-kuchler-246b9026"
+      }
+    ],
+    "keywords": [
+      "Artificial intelligence",
+      "Technology adoption",
+      "Firm employment",
+      "Hiring",
+      "Occupational exposure",
+      "Firm size",
+      "Matched employer–employee data"
+    ],
+    "keywordOrigin": "Author-provided keywords.",
+    "abstract": "How do firms change their employment after adopting AI? We answer this using two unique Danish data sources: the official firm-level IT usage survey, which includes AI-related questions since 2022, and a matched employer–employee register that records every wage payment at monthly frequency. Together, they identify the firms that first used AI in 2023—the earliest measurable cohort—and follow them month by month. Adopters are larger than non-adopters and employ more workers in AI-exposed occupations, so we compare each firm not against other firms but against the employment path it was already on. We find that adopters fall behind that path significantly more than non-adopters do: 6% two years on, 11% by late 2025. The gap comes entirely from adopters with fewer than 100 FTEs, and runs through reduced hiring rather than layoffs, concentrated in AI-exposed occupations—25% below trend, against 7% elsewhere. Wages do not respond: the entire adjustment runs through employment. These effects are so far too small to show up in economy-wide employment: shrinking AI adopters employ too few workers to move the aggregate, and while AI-exposed industries do shed employment, an exact decomposition attributes only about a quarter of that to adoption.",
+    "theories": [
+      "Task-based automation and AI occupational exposure",
+      "Labor displacement versus productivity complementarity",
+      "Fixed costs of AI adoption and firm-size heterogeneity"
+    ],
+    "method": "Quantitative • Observational administrative-panel analysis. Firm-specific pre-2023 employment trend estimation, monthly event studies, three-digit-industry-by-month and size fixed effects, and survey weights. The authors explicitly interpret the estimates as descriptive rather than fully causal.",
+    "data": "Statistics Denmark’s annual IT Usage Survey (identifying first-time AI adopters in 2023) linked to monthly employer–employee wage/payment registers (BFL) and firm background registers (FIRM/FIRE). The linked survey sample covers roughly 4,139 firms in the 2024 descriptive table; employment paths extend through late 2025.",
+    "results": "Firms adopting AI in 2023 exhibit employment about 6% below their own predicted pre-adoption trend after two years, and roughly 11% below trend by late 2025, relative to comparable non-adopters. The divergence is concentrated in firms with fewer than 100 full-time-equivalent workers and primarily reflects slower recruitment—not a surge in layoffs—especially in AI-exposed occupations. Wages are broadly unaffected, and aggregate employment effects remain difficult to detect. “Below trend” does not necessarily mean absolute headcount is falling.",
+    "sourceUrl": "https://www.nationalbanken.dk/en/news-and-knowledge/publications-and-speeches/working-paper/2026/ai-adoption-and-firm-size-employment-effects-in-monthly-administrative-data",
+    "sourceLabel": "View working paper",
+    "topics": [
+      "Firm employment",
+      "Hiring",
+      "Adoption"
+    ],
+    "sortDate": "2026-09-16"
+  },
+  {
+    "id": "acemoglu-2022",
+    "title": "Artificial Intelligence and Jobs: Evidence from Online Vacancies",
+    "year": 2022,
+    "date": "April 2022 (published)",
+    "type": "Journal article",
+    "venue": "Journal of Labor Economics · 40(S1), S293–S340",
+    "country": "United States",
+    "lens": "Vacancies & skills",
+    "effect": "mixed",
+    "signal": "No detectable",
+    "signalLabel": "Aggregate employment or wage association in exposed occupations/industries",
+    "authors": [
+      {
+        "name": "Daron Acemoglu",
+        "url": ""
+      },
+      {
+        "name": "David Autor",
+        "url": "https://scholar.google.com/citations?hl=en&user=cp-8uaAAAAAJ"
+      },
+      {
+        "name": "Jonathon Hazell",
+        "url": ""
+      },
+      {
+        "name": "Pascual Restrepo",
+        "url": ""
+      }
+    ],
+    "keywords": [
+      "Artificial intelligence",
+      "Displacement",
+      "Labor",
+      "Jobs",
+      "Tasks",
+      "Technology",
+      "Wages"
+    ],
+    "keywordOrigin": "Author-provided keywords.",
+    "abstract": "We study the impact of AI on labor markets using establishment-level data on vacancies with detailed occupation and skill information comprising the near-universe of online vacancies in the US from 2010 onwards. We classify establishments as “AI exposed” when their workers engage in tasks that are compatible with current AI capabilities. We document rapid growth in AI related vacancies over 2010-2018 that is not limited to the professional and business services and information technology sectors and is significantly greater in AI-exposed establishments. These AI-exposed establishments also differentially eliminate vacancy postings that list a range of previouslyposted skills while simultaneously posting skill requirements that were not previously listed. Establishment-level estimates suggest that AI-exposed establishments are reducing hiring in non-AI positions. However, we find no discernible relationship between AI exposure and employment or wage growth at the occupation or industry level, implying that AI is currently substituting for humans in a subset of tasks but it is not yet having detectable aggregate labor market consequences.",
+    "theories": [
+      "Task-based model of production and technology",
+      "Labor displacement effect",
+      "Productivity and output-expansion effect",
+      "Human–AI task complementarity",
+      "Skill-demand reallocation"
+    ],
+    "method": "Quantitative empirical econometrics, informed by a formal task-based production model. Establishment-level vacancy analysis compares firms with different pre-existing AI task exposure; estimates are examined across establishments, occupations and industries with alternative exposure indices and robustness checks.",
+    "data": "Burning Glass Technologies (now Lightcast) U.S. online job postings, covering close to the universe of online vacancies, primarily 2010–2018 (plus 2007 observations). Occupational and skill identifiers are combined with AI exposure metrics from Felten–Raj–Seamans, Webb, and Brynjolfsson–Mitchell–Rock.",
+    "results": "AI-related vacancy postings expanded rapidly during 2010–2018, especially at establishments whose original task mix was amenable to AI. These employers altered skill requirements and posted fewer non-AI vacancies, consistent with displacement of some tasks. Nevertheless, the authors found no discernible connection between AI exposure and overall employment or wage growth at the occupation or industry level over the study period. The study primarily concerns pre-generative-AI labor-market developments.",
+    "sourceUrl": "https://doi.org/10.1086/718327",
+    "sourceLabel": "View journal article",
+    "topics": [
+      "Hiring",
+      "Skills",
+      "Exposure"
+    ],
+    "sortDate": "2022-04-01"
+  },
+  {
+    "id": "zhang-2026",
+    "title": "AI Exposure, Occupational Mobility, and Post-Transition Job Quality in China: Labor-Saving and Labor-Augmenting Channels",
+    "year": 2026,
+    "date": "July 28, 2026",
+    "type": "Journal article",
+    "venue": "Frontiers in Psychology · Volume 17, Article 1799093",
+    "country": "China",
+    "lens": "Worker mobility",
+    "effect": "mixed",
+    "signal": "+3.6 pp",
+    "signalLabel": "Minor-group switching for a one-log-unit increase in total exposure",
+    "authors": [
+      {
+        "name": "Ling Zhang",
+        "url": ""
+      },
+      {
+        "name": "Zhenzhen Liu",
+        "url": ""
+      }
+    ],
+    "keywords": [
+      "Artificial intelligence",
+      "Career adaptation",
+      "China",
+      "Labor-augmenting exposure",
+      "Labor-saving exposure",
+      "Occupational mobility",
+      "Post-transition job conditions"
+    ],
+    "keywordOrigin": "Author-provided keywords.",
+    "abstract": "This study examines how exposure to artificial intelligence (AI) shapes Chinese workers’ occupational mobility and how the consequences differ across AI’s labor-saving and labor-augmenting channels. Using 2,446 worker-year observations from the China Labor Force Dynamics Survey 2012–2018, we measure occupation-level AI exposure as the semantic similarity between Chinese task descriptions and AI patent texts and decompose it along routine and non-routine task lines. Causal identification uses an instrumental variable that interacts 2010 baseline occupation-level exposure with lagged cumulative U.S. patent stocks from the USPTO AI Patent Dataset. The 2SLS estimates yield three findings. First, a one-log-unit increase in total AI exposure raises minor-group switching by 3.6 percentage points and intermediate-group switching by 3.4 points, with no significant effect at the major-group level. In the decomposed estimates, only the labor-augmenting component has significant positive coefficients beyond the minor-group margin, reaching 4.6 points at the intermediate and 6.9 points at the major-group distance. The labor-saving coefficients are statistically indistinguishable from zero in the full-sample switching-incidence IV estimates. The short-distance response is concentrated among women, and among less-educated workers labor-saving exposure predicts lower and labor-augmenting exposure higher major-group mobility, suggesting a labor-saving-related barrier to long-distance transitions. Second, among switchers, labor-augmenting exposure exhibits positive but attenuated origin–destination sorting in all three switching samples. Labor-saving sorting is positive in the minor-group sample, statistically indistinguishable from zero in the intermediate-group sample, and negative in the major-group sample. Third, among switchers, greater labor-saving exposure in the origin occupation is associated with longer hours in the minorand intermediate-group samples and with lower skill-match satisfaction in all three samples, whereas favorable associations with origin labor-augmenting exposure are confined to specific samples. The study extends organizational-psychology research by linking instrumented AI exposure to occupational switching as an observable career-adaptation behavior and to the fit and demand conditions of destination jobs. The findings suggest targeted reskilling and organizational support for less-educated workers in occupations with high labor-saving exposure.",
+    "theories": [
+      "Task-based automation framework",
+      "Labor-saving versus labor-augmenting AI exposure",
+      "Occupational mobility and switching-cost framework",
+      "Career adaptation theory",
+      "Job Demands–Resources framework"
+    ],
+    "method": "Quantitative • Worker-level analysis using Probit, two-stage least squares (2SLS) with a shift-share-style external patent-stock instrument, propensity-score matching, and heterogeneity and robustness analyses. The instrument requires an exclusion restriction; exposure is potential task applicability, not observed on-the-job AI use.",
+    "data": "2,446 worker-year observations in the 2012–2018 China Labor Force Dynamics Survey (CLDS); 2015 Chinese occupational taxonomy and 9,334 task statements; Chinese AI patents from patyee; U.S. Patent and Trademark Office (USPTO) AI Patent Dataset for the instrument.",
+    "results": "A one-log-unit rise in total AI exposure is associated in the preferred IV estimates with a 3.6-percentage-point increase in short-distance occupational switching and 3.4 points in intermediate switching, but no significant broad-category shift. Labor-augmenting exposure predicts larger long-distance moves (6.9 points at the major-group level); labor-saving effects on switching incidence are not statistically significant in the full-sample IV specifications. Among job switchers, labor-saving exposure is linked to poorer skill-match satisfaction and, for some transition groups, longer working hours.",
+    "sourceUrl": "https://doi.org/10.3389/fpsyg.2026.1799093",
+    "sourceLabel": "View journal article",
+    "topics": [
+      "Mobility",
+      "Job quality",
+      "Exposure"
+    ],
+    "sortDate": "2026-07-28"
+  },
+  {
+    "id": "engberg-2023",
+    "title": "AI Unboxed and Jobs: A Novel Measure and Firm-Level Evidence from Three Countries",
+    "year": 2023,
+    "date": "December 27, 2023",
+    "type": "Working paper",
+    "venue": "Örebro University School of Business · Working Paper 13/2023",
+    "country": "Denmark · Portugal · Sweden",
+    "lens": "Labor demand & skills",
+    "effect": "mixed",
+    "signal": "Up-skilling",
+    "signalLabel": "High-skilled white-collar demand ↑; blue-collar demand ↓",
+    "authors": [
+      {
+        "name": "Erik Engberg",
+        "url": ""
+      },
+      {
+        "name": "Holger Görg",
+        "url": "https://scholar.google.com/citations?user=ZFVU16QAAAAJ"
+      },
+      {
+        "name": "Magnus Lodefalk",
+        "url": "https://scholar.google.se/citations?user=z0WQ2JcAAAAJ"
+      },
+      {
+        "name": "Farrukh Javed",
+        "url": "https://se.linkedin.com/in/farrukh-javed-40534911"
+      },
+      {
+        "name": "Martin Längkvist",
+        "url": ""
+      },
+      {
+        "name": "Natália Monteiro",
+        "url": ""
+      },
+      {
+        "name": "Hildegunn Kyvik Nordås",
+        "url": "https://www.linkedin.com/in/hildegunn-nordas-38b7b332/"
+      },
+      {
+        "name": "Giuseppe Pulito",
+        "url": "https://www.linkedin.com/in/giuseppe-pulito-b2997a295/"
+      },
+      {
+        "name": "Sarah Schroeder",
+        "url": "https://dk.linkedin.com/in/sarah-schroeder-bb27a334b"
+      },
+      {
+        "name": "Aili Tang",
+        "url": "https://se.linkedin.com/in/aili-tang-354113b3/en"
+      }
+    ],
+    "keywords": [
+      "Artificial intelligence",
+      "Labour demand",
+      "Multi-country firm-level evidence"
+    ],
+    "keywordOrigin": "Author-provided keywords.",
+    "abstract": "We unbox developments in artificial intelligence (AI) to estimate how exposure to these developments affect firm-level labour demand, using detailed register data from Denmark, Portugal and Sweden over two decades. Based on data on AI capabilities and occupational work content, We develop and validate a time-variant measure for occupational exposure to AI across subdomains of AI, including language modelling. According to our model, white collar occupations are most exposed to AI, and especially white collar work that entails relatively little social interaction. We illustrate its usefulness by applying it to near-universal data on firms and individuals from Sweden, Denmark, and Portugal, and estimating firm labour demand regressions. We find a positive (negative) association between AI exposure and labour demand for high-skilled white (blue) collar work. Overall, there is an up-skilling effect, with the share of white-collar to blue collar workers increasing with AI exposure. Exposure to AI within the subdomains of image and language are positively (negatively) linked to demand for high-skilled white collar (blue collar) work, whereas other AI-areas are heterogeneously linked to groups of workers.",
+    "theories": [
+      "Task-based model of production and automation",
+      "New-task creation and reinstatement effects",
+      "Human–AI complementarity and quality (remainder) effects",
+      "Social interaction as a moderator of AI exposure"
+    ],
+    "method": "Quantitative • Multi-country longitudinal firm-level labor-demand regressions. Constructs a Dynamic AI Occupational Exposure (DAIOE) index by linking annual AI-capability benchmarks to O*NET worker abilities and social-skill requirements, then matching initial firm workforce composition with administrative registers.",
+    "data": "Large-scale linked employer–employee administrative registers from Denmark, Portugal, and Sweden covering nearly all firms/workers over roughly two decades. AI progress benchmarks from the Electronic Frontier Foundation and Papers With Code (2010–2023); O*NET occupational abilities and social skills.",
+    "results": "Higher AI exposure is positively associated with demand for highly skilled white-collar workers and negatively associated with blue-collar employment, producing an overall shift toward a more skilled occupational mix. Exposure in language and image AI subfields shows particularly differentiated relationships across these groups. The DAIOE index captures technical exposure potential, not actual employer adoption; findings are associations rather than a uniform causal effect across countries.",
+    "sourceUrl": "https://www.oru.se/globalassets/oru-sv/institutioner/hh/workingpapers/workingpapers2023/wp-13-2023.pdf",
+    "sourceLabel": "View working paper",
+    "topics": [
+      "Labor demand",
+      "Skills",
+      "Exposure"
+    ],
+    "sortDate": "2023-12-27"
+  }
+]</script>
+<script>
+(()=>{'use strict';
+const PAPERS=JSON.parse(document.getElementById('paper-data').textContent);
+const KEY='amirmohammad-ai-labor-reading-status-v1';
+const statuses=['unread','reading','read'];
+const labels={unread:'Not read',reading:'In progress',read:'Read'};
+const authorNames=[...new Set(PAPERS.flatMap(p=>p.authors.map(a=>a.name)))].sort((a,b)=>a.localeCompare(b));
+const years=[...new Set(PAPERS.map(p=>p.year))].sort((a,b)=>a-b);
+let storageOK=false,progress={},filters={year:'all',status:'all',q:'',author:null,sort:'newest'},selected=null,lastFocus=null;
+const $=id=>document.getElementById(id);
+const safe=t=>String(t===undefined||t===null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY)||'{}');progress=x&&typeof x==='object'?x:{};localStorage.setItem(KEY,JSON.stringify(progress));storageOK=true}catch(e){storageOK=false;progress={}}$('storageStatus').innerHTML=storageOK?'<i class="save-dot"></i> Saved locally':'<i class="save-dot" style="background:#e7a347"></i> Session only';}
+function store(){if(storageOK){try{localStorage.setItem(KEY,JSON.stringify(progress))}catch(e){storageOK=false;$('storageStatus').textContent='Session only'}}}
+function statusOf(id){return statuses.includes(progress[id])?progress[id]:'unread'}
+function counts(){const result={read:0,reading:0,unread:0};PAPERS.forEach(p=>result[statusOf(p.id)]++);return result}
+function toast(text){let el=$('toast');el.textContent=text;el.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('show'),2400)}
+function setStatus(id,value){if(!statuses.includes(value))return;progress[id]=value;store();renderSummary();renderList();if(selected?.id===id){drawDetail(selected);toast('Reading status saved: '+labels[value])}}
+function renderSummary(){const c=counts(),t=PAPERS.length,pr=t?Math.round(100*c.read/t):0,readD=t?360*c.read/t:0,readingD=t?360*(c.read+c.reading)/t:0;
+$('statTotal').textContent=t;$('statAuthors').textContent=authorNames.length;$('statRead').textContent=c.read;$('statReading').textContent=c.reading;$('statUnread').textContent=c.unread;
+$('sidebarTotal').textContent=t;$('sidebarAuthors').textContent=authorNames.length;$('sidebarPercent').textContent=pr+'%';$('sidebarTrack').style.width=pr+'%';$('sidebarReadCount').textContent=`${c.read} of ${t} papers read`;
+$('completePill').textContent=pr+'% completed';$('donutPercent').textContent=pr+'%';$('donut').style.background=`conic-gradient(var(--green) 0deg ${readD}deg,var(--amber) ${readD}deg ${readingD}deg,#e7ecf3 ${readingD}deg 360deg)`;
+$('legendRead').textContent=c.read;$('legendReading').textContent=c.reading;$('legendUnread').textContent=c.unread;}
+function renderTimeline(){const max=Math.max(...years.map(y=>PAPERS.filter(p=>p.year===y).length));$('yearRange').textContent=years[0]+'–'+years[years.length-1];$('yearChart').innerHTML=years.map(y=>{const c=PAPERS.filter(p=>p.year===y).length;let h=Math.max(28,Math.round(141*c/max));return `<div class="year-group ${String(filters.year)===String(y)?'selected':''}" role="button" tabindex="0" aria-label="Filter ${y}: ${c} publications" data-year="${y}"><div class="year-count">${c} ${c===1?'paper':'papers'}</div><div class="year-column" style="height:${h}px"></div><div class="year-label">${y}</div></div>`}).join('');$('yearChart').querySelectorAll('[data-year]').forEach(el=>{const action=()=>{filters.year=String(el.dataset.year)==filters.year?'all':el.dataset.year;$('yearSelect').value=filters.year;renderTimeline();renderList();document.querySelector('#library').scrollIntoView({behavior:'smooth',block:'start'})};el.addEventListener('click',action);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();action()}})});}
+function paperMatches(p){if(filters.year!=='all'&&String(p.year)!==String(filters.year))return false;if(filters.status!=='all'&&statusOf(p.id)!==filters.status)return false;if(filters.author&&!p.authors.some(a=>a.name===filters.author))return false;if(filters.q){const txt=[p.title,p.year,p.venue,p.country,p.lens,p.results,p.abstract,p.method,p.data,...p.keywords,...p.authors.map(a=>a.name),...p.theories].join(' ').toLocaleLowerCase();if(!txt.includes(filters.q.toLocaleLowerCase()))return false}return true;}
+function sortPapers(list){return list.sort((a,b)=>filters.sort==='oldest'?(a.sortDate.localeCompare(b.sortDate)||a.title.localeCompare(b.title)):filters.sort==='az'?a.title.localeCompare(b.title):filters.sort==='za'?b.title.localeCompare(a.title):(b.sortDate.localeCompare(a.sortDate)||a.title.localeCompare(b.title)));}
+function summarizeAuthors(p){return p.authors.slice(0,3).map(a=>a.name).join(' · ')+(p.authors.length>3?` · +${p.authors.length-3} more`:'')}
+function renderList(){const shown=sortPapers(PAPERS.filter(paperMatches));$('resultCount').textContent=`Showing ${shown.length} of ${PAPERS.length} papers`;$('paperList').innerHTML=shown.map((p,i)=>{const st=statusOf(p.id);return `<article class="paper-card" data-paper="${safe(p.id)}" tabindex="0" role="button" aria-label="Open ${safe(p.title)}"><div class="paper-index">${String(i+1).padStart(2,'0')}</div><div class="paper-main"><div class="paper-overline"><span class="pill blue">${p.year}</span><span class="pill gray">${safe(p.type)}</span><span class="pill gray">${safe(p.country)}</span></div><h3 class="paper-title">${safe(p.title)}</h3><div class="paper-author">${safe(summarizeAuthors(p))}</div><p class="paper-desc">${safe(p.results)}</p><div class="paper-bottom-link">View research brief &nbsp;↗</div></div><div class="paper-side"><div><div class="signal-value ${safe(p.effect)}">${safe(p.signal)}</div><div class="signal-label">${safe(p.signalLabel)}</div></div><button class="quick-status ${st==='reading'?'reading':st==='read'?'read':''}" data-quick="${safe(p.id)}" aria-label="Reading status for ${safe(p.title)}: ${labels[st]}">${st==='read'?'✓ ':st==='reading'?'◔ ':'○ '}${labels[st]} ▾</button></div></article>`}).join('')||'<div class="empty"><span style="font-size:30px">⌕</span><strong>No matching papers</strong>Try clearing a filter or searching a different term.<br><button class="btn" style="margin-top:15px" id="emptyReset">Clear all filters</button></div>';
+$('paperList').querySelectorAll('[data-paper]').forEach(el=>{el.addEventListener('click',e=>{if(e.target.closest('[data-quick]'))return;openDetail(el.dataset.paper)});el.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.target.closest('button'))openDetail(el.dataset.paper)})});
+$('paperList').querySelectorAll('[data-quick]').forEach(el=>el.addEventListener('click',e=>{e.stopPropagation();const id=el.dataset.quick;setStatus(id,statuses[(statuses.indexOf(statusOf(id))+1)%3]);toast('Status updated')}));
+$('emptyReset')?.addEventListener('click',clearFilters);
+renderChips();}
+function renderChips(){const items=[];if(filters.year!=='all')items.push(['year','Year: '+filters.year]);if(filters.status!=='all')items.push(['status',labels[filters.status]]);if(filters.author)items.push(['author','Author: '+filters.author]);if(filters.q)items.push(['q','Search: '+filters.q]);$('activeFilters').innerHTML=items.map(([k,v])=>`<button type="button" class="filter-chip" data-clear="${k}" title="Remove this filter">${safe(v)} &nbsp;×</button>`).join('');$('activeFilters').querySelectorAll('[data-clear]').forEach(el=>el.addEventListener('click',()=>{if(el.dataset.clear==='year'){filters.year='all';$('yearSelect').value='all';renderTimeline()}if(el.dataset.clear==='status'){filters.status='all';$('statusSelect').value='all'}if(el.dataset.clear==='author'){filters.author=null}if(el.dataset.clear==='q'){filters.q='';$('searchInput').value=''}renderList()}))}
+function renderAuthors(){const q=$('authorSearch').value.toLocaleLowerCase();const filtered=authorNames.filter(n=>n.toLocaleLowerCase().includes(q));$('authorCountHeading').textContent=`${filtered.length} of ${authorNames.length} researchers`;$('authorGrid').innerHTML=filtered.map(n=>{const count=PAPERS.filter(p=>p.authors.some(a=>a.name===n)).length;const initials=n.split(' ').filter(s=>s.length>1).slice(0,2).map(s=>s[0]).join('').toUpperCase();return `<button class="author-card" type="button" data-author="${safe(n)}" aria-label="Show papers by ${safe(n)}"><span class="avatar">${safe(initials)}</span><span class="author-main"><div class="author-name">${safe(n)}</div><div class="author-count">${count} ${count===1?'publication':'publications'}</div></span></button>`}).join('')||'<p class="empty">No researchers found.</p>';$('authorGrid').querySelectorAll('[data-author]').forEach(el=>el.addEventListener('click',()=>{filters.author=el.dataset.author;filters.status='all';$('statusSelect').value='all';renderList();location.hash='library';$('library').scrollIntoView({behavior:'smooth'});toast('Filtered by '+filters.author)}));}
+function rowBox(title,body,wide=false,foot=''){return `<section class="detail-box ${wide?'wide':''}"><h3 class="detail-label"><span class="square">▧</span>${safe(title)}</h3>${body}${foot?`<div class="detail-footnote">${safe(foot)}</div>`:''}</section>`}
+function drawDetail(p){selected=p;const st=statusOf(p.id);const a=p.authors.map(x=>x.url?`<a class="author-link has-link" href="${safe(x.url)}" target="_blank" rel="noopener noreferrer" title="Open verified author profile">${safe(x.name)} <span class="external">↗</span></a>`:`<span class="author-link" title="No matching personal Google Scholar / LinkedIn profile verified">${safe(x.name)}</span>`).join('');
+const heading=`<div class="detail-heading"><div class="detail-overline"><span>${p.year}</span><span>•</span><span>${safe(p.type)}</span><span>•</span><span>${safe(p.country)}</span></div><h2 id="detailTitle">${safe(p.title)}</h2><p class="detail-affil">${safe(p.venue)}<br>${safe(p.date)}</p></div>`;
+const status=`<div class="detail-status"><div><strong>My reading status</strong><small>${storageOK?'Saved automatically in this browser':'Only available for this session'}</small></div><div class="status-buttons" role="group" aria-label="Reading status"><button class="status-button ${st==='unread'?'active':''}" data-status="unread" type="button">○ Not read</button><button class="status-button ${st==='reading'?'active':''}" data-status="reading" type="button">◔ In progress</button><button class="status-button ${st==='read'?'active':''}" data-status="read" type="button">✓ Read</button></div></div>`;
+const authorBox=rowBox('Authors',`<div class="author-links">${a}</div>`);
+const kwBox=rowBox('Keywords',`<div class="kw-list">${p.keywords.map(k=>`<span class="keyword">${safe(k)}</span>`).join('')}</div>`,false,p.keywordOrigin);
+const abstract=rowBox('Abstract',`<p>${safe(p.abstract)}</p>`,true);
+const theory=rowBox('Main theories & conceptual frameworks',`<ul>${p.theories.map(t=>`<li>${safe(t)}</li>`).join('')}</ul>`,false,'Up to five thematic frameworks identified from the paper.');
+const method=rowBox('Research methodology',`<p>${safe(p.method)}</p>`);
+const data=rowBox('Data sources',`<p>${safe(p.data)}</p>`);
+const results=rowBox('Key findings',`<p>${safe(p.results)}</p>`,true);
+const foot=`<div class="detail-actions"><a class="btn btn-dark" href="${safe(p.sourceUrl)}" target="_blank" rel="noopener noreferrer">${safe(p.sourceLabel)} ↗</a><button class="btn" id="closeBottom">Back to library</button></div>`;
+$('detailCounter').textContent=`· ${PAPERS.findIndex(x=>x.id===p.id)+1} / ${PAPERS.length}`;$('detailBody').innerHTML=heading+status+`<div class="detail-grid">${authorBox}${kwBox}${abstract}${theory}${method}${data}${results}</div>`+foot;
+$('detailBody').querySelectorAll('[data-status]').forEach(el=>el.addEventListener('click',()=>setStatus(p.id,el.dataset.status)));$('closeBottom').addEventListener('click',closeDetail);}
+function openDetail(id){const p=PAPERS.find(x=>x.id===id);if(!p)return;lastFocus=document.activeElement;drawDetail(p);$('detailBackdrop').classList.add('open');$('detailBackdrop').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';$('detailBackdrop').querySelector('.detail-panel').scrollTop=0;$('closeDetail').focus()}
+function closeDetail(){selected=null;$('detailBackdrop').classList.remove('open');$('detailBackdrop').setAttribute('aria-hidden','true');document.body.style.overflow='';lastFocus?.focus?.();}
+function clearFilters(){filters.year='all';filters.status='all';filters.author=null;filters.q='';$('yearSelect').value='all';$('statusSelect').value='all';$('searchInput').value='';renderTimeline();renderList();}
+function navSet(section){document.querySelectorAll('.nav-link').forEach(a=>a.classList.toggle('active',a.dataset.nav===section));}
+function exportProgress(){const value={schema:'AI Labor Human Capital Reading Status v1',updatedAt:new Date().toISOString(),statuses:Object.fromEntries(PAPERS.map(p=>[p.id,statusOf(p.id)])),titles:Object.fromEntries(PAPERS.map(p=>[p.id,p.title]))};const blob=new Blob([JSON.stringify(value,null,2)],{type:'application/json'});const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='AI_Labor_Reading_Progress.json';document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(link.href),1000);toast('Reading progress exported')}
+async function importProgress(file){if(!file)return;try{const text=await file.text();const parsed=JSON.parse(text);if(!parsed||typeof parsed.statuses!=='object'||!parsed.statuses)throw new Error('Invalid backup format');let count=0;for(const p of PAPERS){const st=parsed.statuses[p.id];if(statuses.includes(st)){progress[p.id]=st;count++}}if(!count)throw new Error('No matching paper IDs in this backup');store();renderSummary();renderList();if(selected)drawDetail(selected);toast(`Restored statuses for ${count} papers`)}catch(e){toast('Could not import: '+e.message)}finally{$('progressInput').value=''}}
+function init(){load();$('yearSelect').insertAdjacentHTML('beforeend',years.slice().reverse().map(y=>`<option value="${y}">${y}</option>`).join(''));renderSummary();renderTimeline();renderList();renderAuthors();
+$('searchInput').addEventListener('input',e=>{filters.q=e.target.value.trim();renderList()});$('yearSelect').addEventListener('change',e=>{filters.year=e.target.value;renderTimeline();renderList()});$('statusSelect').addEventListener('change',e=>{filters.status=e.target.value;renderList()});$('sortSelect').addEventListener('change',e=>{filters.sort=e.target.value;renderList()});$('authorSearch').addEventListener('input',renderAuthors);$('clearYear').addEventListener('click',()=>{filters.year='all';$('yearSelect').value='all';renderTimeline();renderList()});$('openLibrary').addEventListener('click',()=>{location.hash='library';$('searchInput').focus()});$('exportButton').addEventListener('click',exportProgress);$('importButton').addEventListener('click',()=>$('progressInput').click());$('progressInput').addEventListener('change',e=>importProgress(e.target.files[0]));
+$('closeDetail').addEventListener('click',closeDetail);$('detailBackdrop').addEventListener('click',e=>{if(e.target===$('detailBackdrop'))closeDetail()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&selected)closeDetail()});document.querySelectorAll('[data-nav]').forEach(n=>{n.addEventListener('click',e=>{if(n.dataset.nav==='reading'){e.preventDefault();clearFilters();filters.status='reading';$('statusSelect').value='reading';renderList();location.hash='library';$('library').scrollIntoView({behavior:'smooth',block:'start'});}navSet(n.dataset.nav)})});window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(['overview','library','authors'].includes(h))navSet(h)});window.addEventListener('storage',e=>{if(e.key===KEY){load();renderSummary();renderList();if(selected)drawDetail(selected)}});
+}
+init();
+})();
+</script>
+</body>
+</html>
